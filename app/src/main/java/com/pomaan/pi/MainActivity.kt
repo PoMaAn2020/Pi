@@ -1,6 +1,8 @@
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.pomaan.pi.PlantAdapter
 import com.pomaan.pi.R
 import com.pomaan.pi.databinding.ActivityMainBinding
 import kotlin.math.pow
@@ -8,10 +10,19 @@ import kotlin.math.sqrt
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+    private val adapter = PlantAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        init()
+    }
+
+    private fun init(){
+        binding.apply {
+            rcView.layoutManager = LinearLayoutManager(this@MainActivity)
+            rcView.adapter = adapter
+        }
     }
 
     fun onClickResult(view: View){
