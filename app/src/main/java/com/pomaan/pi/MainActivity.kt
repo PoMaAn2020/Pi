@@ -11,6 +11,12 @@ import kotlin.math.sqrt
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private val adapter = PlantAdapter()
+    private val imageIdList = listOf(
+        R.drawable.tg1,
+        R.drawable.tg2,
+        R.drawable.tg3)
+    private var index = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -22,6 +28,12 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             rcView.layoutManager = LinearLayoutManager(this@MainActivity)
             rcView.adapter = adapter
+            button.setOnClickListener{
+                if (index > 2 ) index = 0
+                val plant = Plant(imageIdList[index],"tg $index")
+                adapter.addPlant(plant)
+                index++
+            }
         }
     }
 
